@@ -1,0 +1,171 @@
+#root {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+header {
+  max-width: 408px;
+  margin: auto;
+}
+
+input,
+textarea {
+  display: flex;
+  padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
+  gap: var(--font-size-300, 20px);
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--color-fg-whisper, #F2F2F2);
+  background: var(--color-bg-default, #FFF);
+  font-family: var(--font-family-sans, Lato);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: var(--font-weight-normal, 400);
+  line-height: 150%; /* 30px */
+  width: 100%;
+  box-sizing: border-box; /* Add this line */
+  resize: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200, 12px);
+  align-items: center;
+  max-width: 400px;
+  width: 88%;
+  margin: 0 auto;
+  margin-top: 16px;
+  border-radius: var(--spacing-200, 12px);
+  background: var(--color-bg-default, #FFF);
+  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.20);
+  margin-bottom: 20px;
+  padding: 32px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--font-size-300, 20px);
+  border-radius: var(--spacing-200, 12px);
+  background: var(--color-bg-default, #FFF);
+  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.20);
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.note .text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+  align-self: stretch;
+  
+}
+
+.note h1 {
+  align-self: stretch;
+  color: var(--color-fg-default, #272727);
+  margin-bottom: 0px;
+  font-family: var(--font-family-sans, Lato);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 130%; /* 37.7px */
+  text-align: left;
+}
+
+.note p {
+  align-self: stretch;
+  color: var(--color-fg-muted, #7B7B7B);
+  font-family: var(--font-family-sans, Lato);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: var(--font-weight-normal, 400);
+  line-height: 150%; /* 30px */
+  text-align: left;
+}
+
+.note .done{
+  color: green;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* -------------- Button ----------------- */
+
+/* Button default */
+
+button {
+  display: flex;
+  padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-200, 12px);
+  align-self: stretch;
+  border-radius: var(--border-radius-large, 50px);
+  background: var(--color-bg-brand-default, #3A71FF);
+  color: var(--color-fg-inverse, #FFF);
+  text-align: center;
+  /* system/sans/medium/bold */
+  font-family: var(--font-family-sans, Lato);
+  font-size: var(--font-size-200, 18px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 150%; /* 27px */
+  border: none;
+  cursor: pointer;
+}
+
+/* Button types */
+
+button.secondary {
+  border-radius: var(--border-radius-large, 50px);
+  border: var(--spacing-25, 2px) solid var(--color-fg-border-muted, #7B7B7B);
+  background: var(--color-bg-default, #FFF);
+  color: var(--color-fg-default, #272727);
+}
+
+button.dashed {
+  border-radius: 8px;
+  border: var(--spacing-25, 2px) dashed var(--color-fg-border-muted, #7B7B7B);
+  background: var(--color-bg-default, #FFF);
+  color: var(--color-fg-default, #272727);
+  width: 100%;
+}
+
+button.dashed:hover {
+  background: lightgrey;
+  cursor: pointer;
+}
+
+/* Button sizes */
+
+button.small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+button.medium {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+button.large {
+  padding: 16px 32px;
+  font-size: 18px;
+}
