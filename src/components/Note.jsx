@@ -9,7 +9,7 @@ const Note = (props) => {
     }
 
     return (
-        <div style={{ border: isDone? '3px solid lightgreen' : '3px solid white' }} className="note">
+        <div style={{ border: isDone? '3px solid green' : '3px solid white' }} className="note">
             <div style={{color: isDone? 'white' : 'black'}}className="text-content">
                 <h1>{props.title}</h1>
                 <p>{props.details}</p>
