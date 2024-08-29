@@ -44,13 +44,16 @@ const ContentArea = (props) => {
                 />
                 <textarea
                     name="details"
-                    placeholder="add any details here"
-                    rows={3}
+                    placeholder="Add any details here"
+                    rows={2}
                     onChange={handleChange}
                     value={formData.details}
                 ></textarea>
+                <div className='button-group'>
+                <Button onClick={handleClose} size='medium' label='Cancel' type='secondary'></Button>
                 <Button onClick={handleAdd} size='medium' label='Add'></Button>
-                <Button onClick={handleClose} size='medium' label='Cancel' type='secondary' leadingIcon={<CloseIcon/>}></Button>
+                </div>
+                
             </form>
         </div>
     );

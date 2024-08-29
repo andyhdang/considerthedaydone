@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Button.css';
 
 const Button = ({ size, label, onClick, type, leadingIcon, trailingIcon}) => {
     
@@ -12,8 +13,8 @@ const Button = ({ size, label, onClick, type, leadingIcon, trailingIcon}) => {
 
 Button.propTypes = {
     size: PropTypes.oneOf(['small', 'medium', 'large']),
-    type: PropTypes.oneOf(['primary', 'secondary', 'dashed']),
-    label: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['primary', 'secondary', 'dashed', 'icon']),
+    label: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     leadingIcon: PropTypes.element,
     trailingIcon: PropTypes.element,

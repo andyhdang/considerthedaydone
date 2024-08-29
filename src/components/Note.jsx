@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Button from './Button';
+import DoneIcon from '@mui/icons-material/Done';
 
 const Note = (props) => {
     const [isDone, setIsDone] = useState(false);
@@ -9,12 +11,15 @@ const Note = (props) => {
     }
 
     return (
-        <div style={{ border: isDone? '3px solid green' : '3px solid white' }} className="note">
-            <div style={{color: isDone? 'white' : 'black'}}className="text-content">
+        <div className="note">
+            <div style={{textDecoration: isDone? 'line-through' : null}}className="text-content">
                 <h1>{props.title}</h1>
                 <p>{props.details}</p>
             </div>
-            <button className="secondary" onClick={handleClick}>Done</button>
+            <div className='bottom-right'>
+            <Button type="icon" leadingIcon={<DoneIcon/>} size='small' onClick={handleClick}></Button>
+            </div>
+            
         </div>
     );
 };

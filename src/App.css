@@ -1,5 +1,5 @@
 #root {
-  max-width: 600px;
+  max-width: 88%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -10,7 +10,29 @@ header {
   margin: auto;
 }
 
-input,
+.bottom-right {
+  position: fixed;
+  bottom: 8px;
+  right: 16px;
+}
+
+input {
+  display: flex;
+  padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
+  gap: var(--font-size-300, 20px);
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--color-fg-whisper, #F2F2F2);
+  background: var(--color-bg-default, #FFF);
+  font-family: var(--font-family-sans, Lato);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: var(--font-weight-normal, 400);
+  line-height: 150%; /* 30px */
+  width: 100%;
+  box-sizing: border-box; /* Add this line */
+}
+
 textarea {
   display: flex;
   padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
@@ -27,6 +49,7 @@ textarea {
   width: 100%;
   box-sizing: border-box; /* Add this line */
   resize: none;
+  margin-bottom: 16px;
 }
 
 form {
@@ -38,7 +61,6 @@ form {
   width: 88%;
   margin: 0 auto;
   margin-top: 16px;
-  border-radius: var(--spacing-200, 12px);
   background: var(--color-bg-default, #FFF);
   box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.20);
   margin-bottom: 20px;
@@ -50,50 +72,60 @@ form {
   z-index: 9999;
 }
 
+/* -------------- Note ----------------- */
+
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 40px;
+}
+
 .note {
   display: flex;
   flex-direction: column;
+  width: 200px;
+  height: 200px;
   padding: 32px;
-  flex-direction: column;
+  transform: rotate(-3.311deg);
   align-items: center;
-  gap: var(--font-size-300, 20px);
-  border-radius: var(--spacing-200, 12px);
-  background: var(--color-bg-default, #FFF);
-  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.20);
-  margin-bottom: 20px;
-  width: 100%;
+  justify-content: center;
+
+  background-color: #FDFFE1;
+  box-shadow: 0px 10px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
-.note .text-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0px;
-  align-self: stretch;
-  
+.note:nth-child(even) {
+  transform:rotate(4deg);
+  position:relative;
+  top:5px;
+  background:#C4FFF8;
 }
+.note:nth-child(3n) {
+  transform:rotate(-3deg);
+  position:relative;
+  top:-5px;
+  background:#FFD5F6;
+}
+.note:nth-child(5n) {
+  transform:rotate(5deg);
+  position:relative;
+  top:-10px;
+}
+
+
 
 .note h1 {
-  align-self: stretch;
   color: var(--color-fg-default, #272727);
-  margin-bottom: 0px;
-  font-family: var(--font-family-sans, Lato);
-  font-size: 20px;
-  font-style: normal;
-  font-weight: var(--font-weight-bold, 700);
-  line-height: 130%; /* 37.7px */
-  text-align: left;
+  font-family: var(--font-family-sans, Permanent Marker);
+  font-size: 24px;
 }
 
 .note p {
-  align-self: stretch;
   color: var(--color-fg-muted, #7B7B7B);
-  font-family: var(--font-family-sans, Lato);
+  font-family: var(--font-family-sans, Permanent Marker);
   font-size: 16px;
-  font-style: normal;
-  font-weight: var(--font-weight-normal, 400);
-  line-height: 150%; /* 30px */
-  text-align: left;
 }
 
 .note .done{
@@ -104,68 +136,4 @@ form {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-}
-
-/* -------------- Button ----------------- */
-
-/* Button default */
-
-button {
-  display: flex;
-  padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-200, 12px);
-  align-self: stretch;
-  border-radius: var(--border-radius-large, 50px);
-  background: var(--color-bg-brand-default, #3A71FF);
-  color: var(--color-fg-inverse, #FFF);
-  text-align: center;
-  /* system/sans/medium/bold */
-  font-family: var(--font-family-sans, Lato);
-  font-size: var(--font-size-200, 18px);
-  font-style: normal;
-  font-weight: var(--font-weight-bold, 700);
-  line-height: 150%; /* 27px */
-  border: none;
-  cursor: pointer;
-}
-
-/* Button types */
-
-button.secondary {
-  border-radius: var(--border-radius-large, 50px);
-  border: var(--spacing-25, 2px) solid var(--color-fg-border-muted, #7B7B7B);
-  background: var(--color-bg-default, #FFF);
-  color: var(--color-fg-default, #272727);
-}
-
-button.dashed {
-  border-radius: 8px;
-  border: var(--spacing-25, 2px) dashed var(--color-fg-border-muted, #7B7B7B);
-  background: var(--color-bg-default, #FFF);
-  color: var(--color-fg-default, #272727);
-  width: 100%;
-}
-
-button.dashed:hover {
-  background: lightgrey;
-  cursor: pointer;
-}
-
-/* Button sizes */
-
-button.small {
-  padding: 8px 16px;
-  font-size: 14px;
-}
-
-button.medium {
-  padding: 12px 24px;
-  font-size: 16px;
-}
-
-button.large {
-  padding: 16px 32px;
-  font-size: 18px;
 }

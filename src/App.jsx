@@ -47,6 +47,7 @@ function App() {
         spread: 70,
         origin: { y: 0.6 }
       });
+      alert('Congratulations! You finished all your tasks. Consider the day DONE!');
     }
   }, [notes]);
 
@@ -63,7 +64,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="flex">
+      <div className="notes">
         {notes.map((note, index) => {
           return (
             <Note
@@ -76,8 +77,8 @@ function App() {
             />
           );
         })}
+        <Button size='medium' type='dashed' label='Add new task' onClick={openInput} leadingIcon={<AddIcon/>}></Button>
       </div>
-      <Button size='medium' type='dashed' label='Add new task' onClick={openInput} leadingIcon={<AddIcon/>}></Button>
       {isInputOpen && <ContentArea onAdd={addNote} onClose={closeInput} />}
       
   
