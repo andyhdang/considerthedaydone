@@ -17,6 +17,7 @@ import Note from './components/Note';
 function App() {
   const [notes, setNotes] = useState([]);
   const [isInputOpen, setIsInputOpen] = useState(false);
+  const [isAllComplete, setIsAllComplete] = useState(false);
 
   function addNote(newNote) {
     setNotes(prevNotes => {
@@ -39,6 +40,10 @@ function App() {
     });
   }
 
+  function handleUndo() {
+    window.location.reload();
+  }
+
   useEffect(() => {
     const allComplete = notes.every(note => note.isComplete);
     if (allComplete && notes.length > 0) {
@@ -47,7 +52,8 @@ function App() {
         spread: 70,
         origin: { y: 0.6 }
       });
-      alert('Congratulations! You finished all your tasks. Consider the day DONE!');
+      // alert('Congratulations! You finished all your tasks. Consider the day DONE!');
+      setIsAllComplete(true);
     }
   }, [notes]);
 
@@ -80,6 +86,8 @@ function App() {
         <Button size='medium' type='dashed' label='Add new task' onClick={openInput} leadingIcon={<AddIcon/>}></Button>
       </div>
       {isInputOpen && <ContentArea onAdd={addNote} onClose={closeInput} />}
+      {isAllComplete && <Button size='medium' type='secondary' label='Undo' onClick={handleUndo}></Button>}
+  
       
   
       
