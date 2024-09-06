@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 //Components
 import Header from './components/Header';
 import Button from './components/Button';
-import ContentArea from './components/ContentArea';
+import InputModal from './components/InputModal/InputModal';
 import Note from './components/Note';
 
 
@@ -38,6 +38,14 @@ function App() {
         return note;
       });
     });
+  }
+
+  function handleEdit(id) {
+    const note = notes[id];
+    console.log('Editing note:', note);
+    setIsInputOpen(true);
+    
+    
   }
 
   function handleUndo() {
@@ -80,15 +88,14 @@ function App() {
               details={note.details}
               onDone={handleDone}
               isComplete={note.isComplete || false}
+              onEdit={handleEdit}
             />
           );
         })}
         <Button size='medium' type='dashed' label='Add new task' onClick={openInput} leadingIcon={<AddIcon/>}></Button>
       </div>
-      {isInputOpen && <ContentArea onAdd={addNote} onClose={closeInput} />}
+      {isInputOpen && <InputModal onAdd={addNote} onClose={closeInput} />}
       {isAllComplete && <Button size='medium' type='secondary' label='Undo' onClick={handleUndo}></Button>}
-  
-      
   
       
     </>

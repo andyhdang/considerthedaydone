@@ -1,13 +1,19 @@
 import React, {useState} from 'react';
 import Button from './Button';
 import DoneIcon from '@mui/icons-material/Done';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 const Note = (props) => {
     const [isDone, setIsDone] = useState(false);
 
-    function handleClick() {
+    function handleDone() {
         props.onDone(props.id);
         setIsDone(!isDone); //used to change color of note
+    }
+
+    function handleEdit() {
+        console.log('Edit clicked');
+        props.onEdit(props.id);
     }
 
     return (
@@ -17,7 +23,12 @@ const Note = (props) => {
                 <p>{props.details}</p>
             </div>
             <div className='bottom-right'>
-            <Button type="icon" leadingIcon={<DoneIcon/>} size='small' onClick={handleClick}></Button>
+                <div className="button-group">
+
+                    <Button type='icon' leadingIcon={<EditOutlinedIcon/>} size='small' onClick={handleEdit}></Button>
+                    <Button type='icon' leadingIcon={<DoneIcon/>} size='small' onClick={handleDone}></Button>
+                 </div>
+            
             </div>
             
         </div>
