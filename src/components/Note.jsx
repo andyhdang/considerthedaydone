@@ -24,7 +24,6 @@ const Note = (props) => {
             </div>
             <div className='bottom-right'>
                 <div className="button-group">
-
                     <Button type='icon' leadingIcon={<EditOutlinedIcon/>} size='small' onClick={handleEdit}></Button>
                     <Button type='icon' leadingIcon={<DoneIcon/>} size='small' onClick={handleDone}></Button>
                  </div>

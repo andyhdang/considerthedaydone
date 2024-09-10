@@ -10,20 +10,32 @@ import AddIcon from '@mui/icons-material/Add';
 //Components
 import Header from './components/Header';
 import Button from './components/Button';
-import InputModal from './components/InputModal/InputModal';
+import AddTaskForm from './components/TaskForm/AddTaskForm';
+// import EditTaskForm from './components/TaskForm/EditTaskForm';
 import Note from './components/Note';
+// import Add from '@mui/icons-material/Add';
+import TaskForm from './components/TaskForm/TaskForm';
 
 
 function App() {
+
+  //list of notes
   const [notes, setNotes] = useState([]);
-  const [isInputOpen, setIsInputOpen] = useState(false);
+
+  //editing note
+  const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [editingNote, setEditingNote] = useState({ title: '', details: '' });
+
+  //form states
+  const [isAddFormOpen, setisAddFormOpen] = useState(false);
   const [isAllComplete, setIsAllComplete] = useState(false);
 
-  function addNote(newNote) {
+  function handleAdd(newNote) {
     setNotes(prevNotes => {
       return [...prevNotes, newNote];
     });
-    setIsInputOpen(false);
+    setisAddFormOpen(false);
   }
   
   function handleDone(id) {
@@ -41,11 +53,26 @@ function App() {
   }
 
   function handleEdit(id) {
-    const note = notes[id];
-    console.log('Editing note:', note);
-    setIsInputOpen(true);
-    
-    
+    setIsTaskFormOpen(true);
+    setEditingId(id);
+    setEditingNote(notes[id]);
+  }
+
+  function handleSave(newNote) {
+    setNotes(prevNotes => {
+      return prevNotes.map((note, index) => {
+        if (index === editingId) {
+          return newNote;
+        }
+        return note;
+      });
+    });
+    setEditingId(null);
+  }
+
+  function handleCancel() {
+    setEditingId(null);
+    setisAddFormOpen(false);
   }
 
   function handleUndo() {
@@ -66,11 +93,11 @@ function App() {
   }, [notes]);
 
   function openInput() {
-    setIsInputOpen(true);
+    setisAddFormOpen(true);
   }
 
   function closeInput() {
-    setIsInputOpen(false);
+    setisAddFormOpen(false);
   }
 
   
@@ -86,18 +113,34 @@ function App() {
               id={index}
               title={note.title}
               details={note.details}
-              onDone={handleDone}
               isComplete={note.isComplete || false}
+              onDone={handleDone}
               onEdit={handleEdit}
             />
           );
         })}
         <Button size='medium' type='dashed' label='Add new task' onClick={openInput} leadingIcon={<AddIcon/>}></Button>
       </div>
-      {isInputOpen && <InputModal onAdd={addNote} onClose={closeInput} />}
+      {notes.map((note, index) => {
+        if (index === editingId && note && isTaskFormOpen) {
+          return (
+            <TaskForm
+              key={index}
+              onSave={handleSave}
+              onClose={handleCancel}
+              title={editingNote.title}
+              details={editingNote.details}
+              header='Edit task'
+            />
+          );
+        }
+        return null;
+      })}
+
+     
+      {isAddFormOpen && <AddTaskForm onAdd={handleAdd} onClose={closeInput} />}
       {isAllComplete && <Button size='medium' type='secondary' label='Undo' onClick={handleUndo}></Button>}
   
-      
     </>
   );
 }
