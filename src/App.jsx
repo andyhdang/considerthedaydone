@@ -73,6 +73,7 @@ function App() {
   function handleCancel() {
     setEditingId(null);
     setisAddFormOpen(false);
+    setIsTaskFormOpen(false);
   }
 
   function handleUndo() {
