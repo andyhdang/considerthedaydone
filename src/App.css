@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 header {
   max-width: 408px;
   margin: auto;
@@ -14,62 +20,6 @@ header {
   position: fixed;
   bottom: 8px;
   right: 16px;
-}
-
-input {
-  display: flex;
-  padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
-  gap: var(--font-size-300, 20px);
-  align-self: stretch;
-  border-radius: 8px;
-  border: 1px solid var(--color-fg-whisper, #F2F2F2);
-  background: var(--color-bg-default, #FFF);
-  font-family: var(--font-family-sans, Lato);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: var(--font-weight-normal, 400);
-  line-height: 150%; /* 30px */
-  width: 100%;
-  box-sizing: border-box; /* Add this line */
-}
-
-textarea {
-  display: flex;
-  padding: var(--spacing-200, 12px) var(--spacing-300, 16px);
-  gap: var(--font-size-300, 20px);
-  align-self: stretch;
-  border-radius: 8px;
-  border: 1px solid var(--color-fg-whisper, #F2F2F2);
-  background: var(--color-bg-default, #FFF);
-  font-family: var(--font-family-sans, Lato);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: var(--font-weight-normal, 400);
-  line-height: 150%; /* 30px */
-  width: 100%;
-  box-sizing: border-box; /* Add this line */
-  resize: none;
-  margin-bottom: 16px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-200, 12px);
-  align-items: center;
-  max-width: 400px;
-  width: 88%;
-  margin: 0 auto;
-  margin-top: 16px;
-  background: var(--color-bg-default, #FFF);
-  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.20);
-  margin-bottom: 20px;
-  padding: 32px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
 }
 
 /* -------------- Note ----------------- */
@@ -114,8 +64,6 @@ form {
   top:-10px;
 }
 
-
-
 .note h1 {
   color: var(--color-fg-default, #272727);
   font-family: var(--font-family-sans, Permanent Marker);
@@ -132,8 +80,3 @@ form {
   color: green;
 }
 
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
