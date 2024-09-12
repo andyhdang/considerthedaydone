@@ -129,13 +129,15 @@ function App() {
             />
           );
         })}
-        <Button
-          size="medium"
-          type="dashed"
-          label="Add new task"
-          onClick={openInput}
-          leadingIcon={<AddIcon />}
-        ></Button>
+        {isAllComplete == false &&
+          <Button
+            size="medium"
+            type="dashed"
+            label="Add new task"
+            onClick={openInput}
+            leadingIcon={<AddIcon />}
+          ></Button>}
+
       </div>
       {notes.map((note, index) => {
         if (index === editingId && note && IsEditFormOpen) {
