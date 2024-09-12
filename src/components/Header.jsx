@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <header>
-            <h1>What do you need to do to consider this <span style={{ color: 'teal' }}>{randomAdjective} {day}</span> done?</h1>
+            <h1>What do you need to do to consider this <span style={{ color: 'teal', whiteSpace: 'nowrap' }}>{randomAdjective} {day}</span> done?</h1>
         </header>
     );
 };
