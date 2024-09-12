@@ -1,50 +1,49 @@
-import { useState, useEffect } from 'react';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
 
 //External Library
-import confetti from 'canvas-confetti';
+import confetti from "canvas-confetti";
 
 //Icons
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 //Components
-import Header from './components/Header';
-import Button from './components/Button';
-import AddTaskForm from './components/TaskForm/AddTaskForm';
-// import EditTaskForm from './components/TaskForm/EditTaskForm';
-import Note from './components/Note';
-// import Add from '@mui/icons-material/Add';
-import TaskForm from './components/TaskForm/TaskForm';
-
+import Header from "./components/Header";
+import Button from "./components/Button/Button";
+import Note from "./components/Note/Note";
+import TaskForm from "./components/TaskForm/TaskForm";
 
 function App() {
-
   //list of notes
   const [notes, setNotes] = useState([]);
 
-  //editing note
-  const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
+  //states for editing notes
+  const [IsEditFormOpen, setIsEditFormOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
-  const [editingNote, setEditingNote] = useState({ title: '', details: '' });
+  const [editingNote, setEditingNote] = useState({ title: "", details: "" });
 
-  //form states
-  const [isAddFormOpen, setisAddFormOpen] = useState(false);
+  //states for adding notes
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  //state for all tasks completed
   const [isAllComplete, setIsAllComplete] = useState(false);
 
+  //function to add new note
   function handleAdd(newNote) {
-    setNotes(prevNotes => {
+    setNotes((prevNotes) => {
       return [...prevNotes, newNote];
     });
-    setisAddFormOpen(false);
+    setIsFormOpen(false);
   }
-  
+
+  //function to mark note as done
   function handleDone(id) {
-    setNotes(prevNotes => {
+    setNotes((prevNotes) => {
       return prevNotes.map((note, index) => {
         if (index === id) {
           return {
             ...note,
-            isComplete: !note.isComplete
+            isComplete: !note.isComplete, //to track when all notes are completed
           };
         }
         return note;
@@ -52,14 +51,16 @@ function App() {
     });
   }
 
+  //function to edit note
   function handleEdit(id) {
-    setIsTaskFormOpen(true);
+    setIsEditFormOpen(true);
     setEditingId(id);
     setEditingNote(notes[id]);
   }
 
+  //function to save edited note
   function handleSave(newNote) {
-    setNotes(prevNotes => {
+    setNotes((prevNotes) => {
       return prevNotes.map((note, index) => {
         if (index === editingId) {
           return newNote;
@@ -70,42 +71,50 @@ function App() {
     setEditingId(null);
   }
 
+  //function to close form
   function handleCancel() {
     setEditingId(null);
-    setisAddFormOpen(false);
-    setIsTaskFormOpen(false);
+    setIsFormOpen(false);
+    setIsEditFormOpen(false);
   }
 
+  //function to undo all completed tasks
   function handleUndo() {
     window.location.reload();
   }
 
+  //check if all tasks are completed
   useEffect(() => {
-    const allComplete = notes.every(note => note.isComplete);
+    const allComplete = notes.every((note) => note.isComplete);
     if (allComplete && notes.length > 0) {
       confetti({
         particleCount: 100,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: { y: 0.6 },
       });
-      // alert('Congratulations! You finished all your tasks. Consider the day DONE!');
+      alert(
+        "Congratulations! You finished all your tasks. Consider the day DONE!"
+      );
       setIsAllComplete(true);
     }
   }, [notes]);
 
+  //function to open task form
   function openInput() {
-    setisAddFormOpen(true);
+    setIsFormOpen(true);
   }
-
-  function closeInput() {
-    setisAddFormOpen(false);
-  }
-
-  
 
   return (
     <>
       <Header />
+      {isAllComplete && (
+        <Button
+          size="medium"
+          type="primary"
+          label="Undo"
+          onClick={handleUndo}
+        ></Button>
+      )}
       <div className="notes">
         {notes.map((note, index) => {
           return (
@@ -120,28 +129,45 @@ function App() {
             />
           );
         })}
-        <Button size='medium' type='dashed' label='Add new task' onClick={openInput} leadingIcon={<AddIcon/>}></Button>
+        {isAllComplete == false &&
+          <Button
+            size="medium"
+            type="dashed"
+            label="Add new task"
+            onClick={openInput}
+            leadingIcon={<AddIcon />}
+          ></Button>}
+
       </div>
       {notes.map((note, index) => {
-        if (index === editingId && note && isTaskFormOpen) {
+        if (index === editingId && note && IsEditFormOpen) {
           return (
             <TaskForm
               key={index}
               onSave={handleSave}
               onClose={handleCancel}
+              onAdd={handleAdd}
               title={editingNote.title}
               details={editingNote.details}
-              header='Edit task'
+              header="Edit task"
+              save={true}
+              add={false}
             />
           );
         }
         return null;
       })}
 
-     
-      {isAddFormOpen && <AddTaskForm onAdd={handleAdd} onClose={closeInput} />}
-      {isAllComplete && <Button size='medium' type='secondary' label='Undo' onClick={handleUndo}></Button>}
-  
+      {isFormOpen && (
+        <TaskForm
+          onClose={handleCancel}
+          onAdd={handleAdd}
+          header="Add task"
+          save={false}
+          add={true}
+        />
+      )}
+
     </>
   );
 }

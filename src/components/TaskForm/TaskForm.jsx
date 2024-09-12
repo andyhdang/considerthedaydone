@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Button from '../Button';
+import Button from '../Button/Button';
+import './TaskForm.css';
 
-const TaskForm = ({ onClose, onSave, header, title, details }) => {
+const TaskForm = ({ onAdd, onClose, onSave, header, title, details, save, add }) => {
     const [formData, setFormData] = useState({
         title: title || '',
         details: details || ''
@@ -11,6 +12,16 @@ const TaskForm = ({ onClose, onSave, header, title, details }) => {
         const { name, value } = event.target;
         setFormData(prevData => {
             return { ...prevData, [name]: value };
+        });
+    }
+
+
+    function handleAdd(event) {
+        event.preventDefault();
+        onAdd(formData);
+        setFormData({
+            title: '',
+            details: ''
         });
     }
 
@@ -35,7 +46,7 @@ const TaskForm = ({ onClose, onSave, header, title, details }) => {
                 <input
                     name="title"
                     type="text"
-                    placeholder= "What do you need to get done today?"
+                    placeholder="What do you need to get done today?"
                     onChange={handleChange}
                     value={formData.title}
                 />
@@ -53,7 +64,8 @@ const TaskForm = ({ onClose, onSave, header, title, details }) => {
                         label="Cancel"
                         type="secondary"
                     ></Button>
-                    <Button onClick={handleSave} size="medium" label="Save"></Button>
+                    {save ? <Button onClick={handleSave} size="medium" label="Save" type="primary"></Button> : null}
+                    {add ? <Button onClick={handleAdd} size="medium" label="Add" type="primary"></Button> : null}
                 </div>
             </form>
         </div>

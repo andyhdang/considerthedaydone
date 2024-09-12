@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import Button from './Button';
+import Button from '../Button/Button';
 import DoneIcon from '@mui/icons-material/Done';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import './Note.css';
 
 const Note = (props) => {
     const [isDone, setIsDone] = useState(false);
 
     function handleDone() {
-        props.onDone(props.id);
-        setIsDone(!isDone); //used to change color of note
+        props.onDone(props.id); //used to change isComplete state
+        setIsDone(!isDone); //used to add line-through style
     }
 
     function handleEdit() {
@@ -18,7 +19,7 @@ const Note = (props) => {
 
     return (
         <div className="note">
-            <div style={{textDecoration: isDone? 'line-through' : null}}className="text-content">
+            <div style={{textDecoration: isDone? 'line-through' : null, textDecorationThickness: isDone? '5px' : null}}className="text-content">
                 <h1>{props.title}</h1>
                 <p>{props.details}</p>
             </div>
