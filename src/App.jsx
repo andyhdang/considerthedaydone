@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 //Components
 import Header from './components/Header';
 import Button from './components/Button/Button';
-import Note from './components/Note';
+import Note from './components/Note/Note';
 import TaskForm from './components/TaskForm/TaskForm';
 
 

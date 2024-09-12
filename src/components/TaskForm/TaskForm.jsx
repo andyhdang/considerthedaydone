@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../Button/Button';
+import './TaskForm.css';
 
 const TaskForm = ({ onAdd, onClose, onSave, header, title, details, save, add }) => {
     const [formData, setFormData] = useState({
