@@ -19,7 +19,7 @@ const Note = (props) => {
 
     return (
         <div className="note">
-            <div style={{textDecoration: isDone? 'line-through' : null}}className="text-content">
+            <div style={{textDecoration: isDone? 'line-through' : null, textDecorationThickness: isDone? '5px' : null}}className="text-content">
                 <h1>{props.title}</h1>
                 <p>{props.details}</p>
             </div>
