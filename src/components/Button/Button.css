@@ -95,3 +95,8 @@ button.large {
   padding: 16px 32px;
   font-size: 18px;
 }
+
+/* Button width */
+.full-width {
+  width: 100%;
+}
