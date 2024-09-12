@@ -15,7 +15,6 @@ const TaskForm = ({ onAdd, onClose, onSave, header, title, details, save, add })
         });
     }
 
-
     function handleAdd(event) {
         event.preventDefault();
         onAdd(formData);

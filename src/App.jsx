@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Button from "./components/Button/Button";
 import Note from "./components/Note/Note";
 import TaskForm from "./components/TaskForm/TaskForm";
+import Alert from "./components/Alert/Alert";
 
 function App() {
   //list of notes
@@ -91,10 +92,8 @@ function App() {
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
+        zIndex: 1000,
       });
-      alert(
-        "Congratulations! You finished all your tasks. Consider the day DONE!"
-      );
       setIsAllComplete(true);
     }
   }, [notes]);
@@ -107,13 +106,11 @@ function App() {
   return (
     <>
       <Header />
+      
       {isAllComplete && (
-        <Button
-          size="medium"
-          type="primary"
-          label="Undo"
-          onClick={handleUndo}
-        ></Button>
+        <Alert
+        onUndo={handleUndo}
+        />
       )}
       <div className="notes">
         {notes.map((note, index) => {
